@@ -1,4 +1,4 @@
-# NEWS
+# BMCS
 
 ## Prerequisites
 
