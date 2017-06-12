@@ -1,0 +1,212 @@
+<html>
+    <head>
+        <title>Normalization Process</title>
+
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="content">
+      <div class="uni-paragraph">
+        <div class="rich-text">
+            <h3>The Normalization Process</h3>
+            <p>Its just a process of organising data in the database.</p>
+
+            <br>
+            <h4>Purpose Of Normalization</h4>
+
+
+            <ul>
+                <li>Eliminate Useless data</li>
+                <li>Ensure data dependency make sense, makes sure they are logically stored.</li>
+            </ul>
+
+            <br><br>
+
+            <h4>Problemns That occur without Normalization</h4>
+            <br><br>
+
+            <ul>
+                <li>Insertion Anomalies</li>
+                <li>Updating Anomalies</li>
+                <li>Deletion Anomalies</li>
+            </ul>
+
+            <p>These anomalies are very easy to understand</p>
+            <br>
+            <p>Look at it this way..</p>
+
+            <p>1. On Insertion Anomalies</p>
+            <p>We will have problems when we want to insert data into the database</p>
+
+            <p>2. On Update Anomalies</p>
+            <p>We will have problems when we want to update data in the database</p>
+
+            <p>2. On Deletion Anomalies</p>
+            <p>We will have problems when we want to delete data from the database</p>
+
+            <h5>What are this problems exactly ?</h5>
+
+            <p>1. On Insertion Anomalies</p>
+            <p>Say for example we have a new student that has been registered in an institution and 
+                has not nesessarilly chosen the course of his choice, We will need to insert NULL, on the course
+                field and this will bring problems if the field does not allow NULL Values.
+
+                Think of a new banker that has not been posted to a branch, or a new security guard that has been registered but 
+                has not been given a post.
+            </p> 
+
+            <br>
+
+            <p>2. On Update Anomalies</p>
+            <p>
+                This occurs if we have data thats in more than one place, if we update one part of the data,
+                then the duplicate data will be inconsistent with the updated data, this would mean that
+                we need to update the data in more than one place, if we are to maintain consistency or data.
+                
+            </p> 
+            <br>
+
+
+            <p>2. On Deletion Anomalies</p>
+            <p>
+
+                This could go in two awkward ways,
+                <ul>
+                    <li>If we delete data on one row, the entire record is deleted.</li>
+                    <li>On deleting a record, we can have part of the record still in the database because of unawareness
+                , that the data is saved elsewhere.
+                    </li>
+                </ul>
+
+            </p>
+
+            <p>
+                For instance, when one department closes, then it would mean that the 
+                Info of employees working in that department gets lost as well.
+
+            </p>
+
+            <br><br><br><br>
+
+            <h2>Normalization Rules</h2>
+
+            <p>
+              Ill Briefly outline the rules that are followed for any 
+              Normalization process upto the 3rd normal form.
+            </p>
+            <br><br>
+            <p>
+                1. First Normal Form. (1NF)
+                <br>
+                <li>A collumn cannot hold multiple values, just one atomic value.
+                    Each table attribute must have a single atomic value.
+                </li>
+
+                <table style="border: 1px solid black; border-collapse: collapse;">
+                    
+                    <tr style="border: 1px solid black;">
+                        <th style="border: 1px solid black;">Name</th>
+                        <th style="border: 1px solid black;">Age</th>
+                        <th style="border: 1px solid black;">Phone Number</th>
+                    </tr>
+
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;">Dennis</td>
+                        <td style="border: 1px solid black;">20</td>
+                        <td style="border: 1px solid black;">07234323, 0734243</td>
+                    </tr>
+
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;">Bob</td>
+                        <td style="border: 1px solid black;">30</td>
+                        <td style="border: 1px solid black;">07234323</td>
+                    </tr>
+                </table>
+
+                <br><br>
+                <p>Will become::</p>
+
+                <br><br>
+
+                <table style="border: 1px solid black; border-collapse: collapse;">
+                    
+                    <tr style="border: 1px solid black;">
+                        <th style="border: 1px solid black;">Name</th>
+                        <th style="border: 1px solid black;">Age</th>
+                        <th style="border: 1px solid black;">Phone Number</th>
+                    </tr>
+
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;">Dennis</td>
+                        <td style="border: 1px solid black;">20</td>
+                        <td style="border: 1px solid black;">07234323</td>
+                    </tr>
+
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;">Dennis</td>
+                        <td style="border: 1px solid black;">20</td>
+                        <td style="border: 1px solid black;">0734243</td>
+                    </tr>
+
+                    <tr style="border: 1px solid black;">
+                        <td style="border: 1px solid black;">Bob</td>
+                        <td style="border: 1px solid black;">30</td>
+                        <td style="border: 1px solid black;">07234323</td>
+                    </tr>
+                </table>
+
+                <br><br>
+
+                <h4>2NF</h4>
+
+                <li>Table is in the 1NF</li>
+                <li>Remove any partial dependency</li>
+                <p>This means that all non prime attribute must be fully
+                     functionally dependent on a prime key attribute</p>
+                     <br>
+                <span><b>A non prime Attribute</b> ==> This is an attribute that isnt part of 
+                    any candidate key.
+                 </span>
+
+            </p>
+            <!--third nf-->
+            <p>
+                <h4>3NF</h4>
+
+                <br><br>
+                <ul>
+                    <li>Must be in 2NF</li>
+                    <li>No non prime attribute shd be dependent on another non prime attribute</li>
+                </ul>
+
+                <p>This is what we mean when we say, we must eliminate transitive dependency.</p>
+            </p>
+            <br><br>
+            <p>
+                I couldn't write any example in the post on Normalization upto 3NF, Ill do a few examples later on in different posts, but below are a couple of links that can help. 
+
+                <ul>
+                    <li><a  href="http://www.studytonight.com/dbms/database-normalization.php" target="_blank">Study Tonight</a></li>
+                    <li><a  href="http://www.guru99.com/database-normalization.html" target="_blank">Guru 99</a></li>
+                    <li><a  href="https://www.tutorialspoint.com/dbms/database_normalization.htm" target="_blank">Tutorialspoint</a></li>
+                    <li><a  href="http://beginnersbook.com/2015/05/normalization-in-dbms/" target="_blank">Beginners Book</a></li>
+                </ul>
+            </p>
+
+            <p>In any question use the above rules and ull ace it. </p>
+        
+        </div>
+     </div>
+    </div>
+
+
+    </body>
+</html>
